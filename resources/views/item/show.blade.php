@@ -1,0 +1,1 @@
+<p>{{$check->category1}}</p>
