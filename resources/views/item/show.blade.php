@@ -1,1 +1,4 @@
-<p>{{$check->category1}}</p>
+<p>
+    holi
+</p>
+

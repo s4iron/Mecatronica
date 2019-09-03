@@ -49,7 +49,7 @@
 
         <div class="form-check">
                 @foreach ($categories as $category)
-                    <input class="form-check-input" type="checkbox" value="{{$category->id}}" id='category{{$category->id}}' name='category'>
+                    <input class="form-check-input" type="checkbox" value="{{$category->id}}" id='category{{$category->id}}' name='categories'>
                     <label class="form-check-label" for="category{{$category->id}}">
                         {{$category->category}} 
                     </label><br>

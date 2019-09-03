@@ -50,12 +50,8 @@ class ItemController extends Controller
         $item->description=$validData['description'];
         $item->save();
 
-        $holi = explode("category", $request);
-        
-        
-        echo $holi[1];
-       // echo $request->category5;
-        //var_dump($holi);
+        var_dump($request->categories);
+            
         return view('item.show',[
             'check'=>$request
         ]);
