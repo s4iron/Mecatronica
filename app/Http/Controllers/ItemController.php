@@ -49,9 +49,13 @@ class ItemController extends Controller
         $item->item=$validData['item'];
         $item->description=$validData['description'];
         $item->save();
+var_dump($request->categories);
+        foreach($request->categories as $request->category){
+            echo $request->category;echo '</br>';
+        }
+        
+        
 
-        var_dump($request->categories);
-            
         return view('item.show',[
             'check'=>$request
         ]);

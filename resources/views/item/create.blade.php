@@ -38,19 +38,10 @@
         <h3>Pertenece a las siguientes Categorias:</h3>
         <br>
 
-      <!--  <div class="form-check">
-            @foreach ($categories as $category)
-                <input class="form-check-input" type="checkbox" value="{{$category->id}}" id='{{$category->category}}' name='{{$category->category}}'>
-                <label class="form-check-label" for="{{$category->category}}">
-                    {{$category->category}} 
-                </label><br>
-            @endforeach    
-        </div>-->
-
         <div class="form-check">
                 @foreach ($categories as $category)
-                    <input class="form-check-input" type="checkbox" value="{{$category->id}}" id='category{{$category->id}}' name='categories'>
-                    <label class="form-check-label" for="category{{$category->id}}">
+                    <input class="form-check-input" type="checkbox" value="{{$category->id}}" id='{{$category->id}}' name='categories[{{ $category->id }}]'>
+                    <label class="form-check-label" for="{{$category->id}}">
                         {{$category->category}} 
                     </label><br>
                 @endforeach    
