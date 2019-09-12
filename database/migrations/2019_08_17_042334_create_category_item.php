@@ -21,8 +21,6 @@ class CreateCategoryItem extends Migration
 
             $table->unsignedBigInteger('item_id');
             $table->foreign('item_id')->references('id')->on('items');
-
-            $table->timestamps();
         });
     }
 

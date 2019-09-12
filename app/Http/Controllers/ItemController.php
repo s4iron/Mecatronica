@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Item;
 use App\Category;
+use Carbon\Carbon;
 
 class ItemController extends Controller
 {
@@ -44,22 +46,23 @@ class ItemController extends Controller
             'item'=>'required',
             'description'=>'required|min:3'
         ]);
-
-        $item= new Item();
-        $item->item=$validData['item'];
-        $item->description=$validData['description'];
-        $item->save();
-var_dump($request->categories);
-        foreach($request->categories as $request->category){
-            echo $request->category;echo '</br>';
+         
+        $id = DB::table('items')->insertGetId(
+            [
+                'item' => $validData['item'],
+                'description' => $validData['description'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]
+        );
+        
+        if(Item::find($id)->categories == '[]')
+        {
+            $parents = Category::find($request->categories);
+            Item::find($id)->categories()->attach($parents);
         }
         
-        
-
-        return view('item.show',[
-            'check'=>$request
-        ]);
-        //return redirect('/items');
+        return redirect('/items');
     }
 
     /**
@@ -70,7 +73,11 @@ var_dump($request->categories);
      */
     public function show($id)
     {
-        //
+        $item =Item::findOrFail($id);
+        return view('item.show',[
+            'item'=>$item,
+            'categories'=> Item::find($id)->categories
+        ]);
     }
 
     /**
@@ -81,7 +88,11 @@ var_dump($request->categories);
      */
     public function edit($id)
     {
-        //
+        $item=Item::findOrFail($id);
+        return view('item.edit',[
+            'item'=>$item,
+            'categories'=> Item::find($item->id)->categories
+        ]);
     }
 
     /**
@@ -105,5 +116,47 @@ var_dump($request->categories);
     public function destroy($id)
     {
         //
+    }
+
+    //Delete relations
+    public function deleteCategory($id,$category)
+    {
+        Item::find($id)->categories()->detach($category);
+        return redirect('/items/'.$id.'/edit');
+    }
+    //add categories
+    public function addCategory($id)
+    {
+        $item=Item::findOrFail($id);
+        return view('item.addCategories',[
+            'item'=>$item,
+            'categories'=>Category::all()
+            ]);
+    }
+    //confirmacion de actualizacion de categorias
+    public function addCategoryConfirm(Request $request){
+        
+        if(Item::find($request->id)->categories == '[]')
+        {
+            $parents = Category::find($request->categories);
+            Item::find($request->id)->categories()->attach($parents);
+        }
+        else
+        {
+            $categories=Item::find($request->id)->categories;
+            foreach($request->categories as $request->category){
+                $flag=1;
+                foreach($categories as $category){
+                    if($category->id == $request->category){
+                        $flag=0;
+                    }
+                }
+                if($flag==1)
+                {
+                    Item::find($request->id)->categories()->attach($request->category);
+                }
+            }
+        }
+        return redirect('/items/'.$request->id.'/edit');
     }
 }

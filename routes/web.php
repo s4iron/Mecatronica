@@ -20,3 +20,6 @@ Route::get('/categories/{id}/confirmDelete','categoryController@confirmDelete');
 
 Route::resource('/items','itemController');
 Route::get('/items/{id}/confirmDelete','itemController@confirmDelete');
+Route::delete('/items/{id}/deleteCategory/{category}','itemController@deleteCategory');
+Route::get('/items/{id}/edit/categories','itemController@addCategory');
+Route::post('/items/{id}/edit/addCategories','itemController@addCategoryConfirm');
