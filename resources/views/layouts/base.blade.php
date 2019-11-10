@@ -14,7 +14,7 @@
     <a href="/">Home</a>
       <div class="container">
           @yield('content')
-
+          <script src="{{asset('js/app.js')}}"></script> <!--Añadimos el js generado con webpack, donde se encuentra nuestro componente vuejs-->
       </div>
 
     <!-- Optional JavaScript -->

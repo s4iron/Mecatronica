@@ -16,11 +16,11 @@
     <div class="row">
 
         <div class="col-12">
-            <label for="category">Item: </label><input type="text"  class="form-control" id="item" name="item" value="{{old('item')}}">
+        <label for="category">Item: </label><input type="text"  class="form-control" id="item" name="item" value="{{$item->item}}">
         </div>
 
         <div class="col-12">
-                <label for="description">Descripcion: </label><input type="text"  class="form-control" id="description" name="description" value="{{old('description')}}">
+                <label for="description">Descripcion: </label><input type="text"  class="form-control" id="description" name="description" value="{{$item->description}}">
                 <br>
         </div>
     <div class="col-11">Cantidad:{{$item->quantity}}</button></div>

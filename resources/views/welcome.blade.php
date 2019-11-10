@@ -87,6 +87,7 @@
                 <div class="links">
                     <a href="/categories">categorias</a>
                     <a href="/items">items</a>
+                    <a href="/serials">serials</a>
                 </div>
             </div>
         </div>

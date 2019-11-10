@@ -104,7 +104,17 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validData= $request->validate([
+            'item'=>'required',
+            'description'=>'required|min:3'
+        ]);
+        
+        DB::table('items')->where('id',$id)->update([
+            'item' => $validData['item'],
+            'description' => $validData['description'],
+            'updated_at' => Carbon::now()
+        ]);
+        return redirect('items/'.$id.'/edit');
     }
 
     /**
@@ -115,9 +125,19 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item=Item::findOrFail($id);
+        Item::find($id)->categories()->detach();
+        $item->delete();
+
+        return redirect('/items');
     }
 
+    public function confirmDelete($id){
+        $item= Item::findOrFail($id);
+        return view('item.delete',[
+            'item'=>$item
+        ]);
+    }
     //Delete relations
     public function deleteCategory($id,$category)
     {

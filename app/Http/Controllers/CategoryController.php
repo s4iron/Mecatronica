@@ -58,8 +58,11 @@ class CategoryController extends Controller
      */
     public function show(category $category)
     {
+        $items=Category::find($category->id)->items;
+        
         return view('category.show',[
-            'category'=>$category
+            'category'=>$category,
+            'items'=>$items
         ]);
     }
 
@@ -95,7 +98,7 @@ class CategoryController extends Controller
 
         $category->category = $validData['category'];
         $category->description = $validData['description'];
-        $category->save();
+        $category->update();
 
         return redirect('/categories');
     }
