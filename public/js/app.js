@@ -37060,12 +37060,12 @@ var staticRenderFns = [
         _c("div", { staticClass: "col-md-8" }, [
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
+              _vm._v("Iniciando laravel Component")
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _vm._v(
-                "\n                    I'm an example component.\n                "
+                "\n                    componente de ejemplo\n                "
               )
             ])
           ])
@@ -49514,8 +49514,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Erik\Desktop\proyecto de grado\laravel\mecatronica\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Erik\Desktop\proyecto de grado\laravel\mecatronica\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Erik\Desktop\proyecto de grado\Laravel\mecatronica\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Erik\Desktop\proyecto de grado\Laravel\mecatronica\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

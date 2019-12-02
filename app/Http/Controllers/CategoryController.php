@@ -14,9 +14,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('category.index',[
-            'categories' => Category::all()
-        ]);
+        return Category::all();
+        if($request->ajax()){
+            return Nota::where('user_id', auth()->id())->get();
+        }else{
+            return view('home');
+        }
     }
 
     /**
@@ -26,7 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        //
     }
 
     /**
@@ -37,17 +40,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validData = $request->validate([
-            'category'=>'required|min:3',
-            'description'=>'required|min:3'
-        ]);   
-
-        $category = new Category();
-        $category->category = $validData['category'];
-        $category->description = $validData['description'];
-        $category->save();
-
-        return redirect('/categories');
+        //
     }
 
     /**
@@ -56,14 +49,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(category $category)
+    public function show($id)
     {
-        $items=Category::find($category->id)->items;
-        
-        return view('category.show',[
-            'category'=>$category,
-            'items'=>$items
-        ]);
+        //
     }
 
     /**
@@ -74,10 +62,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category=Category::findOrFail($id);
-        return view('category.edit',[
-            'category'=>$category
-        ]);
+        //
     }
 
     /**
@@ -89,18 +74,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::findOrFail($id);
-        
-        $validData = $request->validate([
-            'category'=>'required|min:3',
-            'description'=>'required|min:3'
-        ]);   
-
-        $category->category = $validData['category'];
-        $category->description = $validData['description'];
-        $category->update();
-
-        return redirect('/categories');
+        //
     }
 
     /**
@@ -111,16 +85,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category=Category::findOrFail($id);
-        $category->delete();
-
-        return redirect('/categories');
-    }
-
-    public function confirmDelete($id){
-        $category= Category::findOrFail($id);
-        return view('category.delete',[
-            'category'=>$category
-        ]);
+        //
     }
 }
