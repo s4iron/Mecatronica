@@ -1,0 +1,6 @@
+//_________________________________________________________________________________________
+Recordar activar el crsf token al terminar de contruir el backend, se descomenta la seccion
+protected $except = [
+        '/*',
+    ]; 
+    en el middleware verifyuCsrfToken

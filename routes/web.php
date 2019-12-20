@@ -15,11 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/categories','categoryController');
-Route::get('/categories/{id}/confirmDelete','categoryController@confirmDelete');
+Route::resource('/categories','CategoryController');
 
-Route::resource('/items','itemController');
-Route::get('/items/{id}/confirmDelete','itemController@confirmDelete');
-Route::delete('/items/{id}/deleteCategory/{category}','itemController@deleteCategory');
-Route::get('/items/{id}/edit/categories','itemController@addCategory');
-Route::post('/items/{id}/edit/addCategories','itemController@addCategoryConfirm');
+Route::resource('/items','ItemController');
+
+Route::resource('/category_item','CategoryItemController');

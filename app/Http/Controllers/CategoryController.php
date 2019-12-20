@@ -14,9 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('category.index',[
-            'categories' => Category::all()
-        ]);
+        return Category::all();
     }
 
     /**
@@ -24,9 +22,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('category.create');
+        
     }
 
     /**
@@ -37,6 +35,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        
         $validData = $request->validate([
             'category'=>'required|min:3',
             'description'=>'required|min:3'
@@ -47,7 +46,7 @@ class CategoryController extends Controller
         $category->description = $validData['description'];
         $category->save();
 
-        return redirect('/categories');
+        return $category;
     }
 
     /**
@@ -56,11 +55,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(category $category)
+    public function show($id)
     {
-        return view('category.show',[
-            'category'=>$category
-        ]);
+        return Category::findOrFail($id);
     }
 
     /**
@@ -71,10 +68,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category=Category::findOrFail($id);
-        return view('category.edit',[
-            'category'=>$category
-        ]);
+
     }
 
     /**
@@ -86,8 +80,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $category = Category::findOrFail($id);
-        
+
         $validData = $request->validate([
             'category'=>'required|min:3',
             'description'=>'required|min:3'
@@ -97,7 +92,7 @@ class CategoryController extends Controller
         $category->description = $validData['description'];
         $category->save();
 
-        return redirect('/categories');
+        return $category;
     }
 
     /**
@@ -109,15 +104,9 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category=Category::findOrFail($id);
+        $cache = $category;
         $category->delete();
-
-        return redirect('/categories');
+        return ([$cache,"eliminada"]);
     }
 
-    public function confirmDelete($id){
-        $category= Category::findOrFail($id);
-        return view('category.delete',[
-            'category'=>$category
-        ]);
-    }
 }
