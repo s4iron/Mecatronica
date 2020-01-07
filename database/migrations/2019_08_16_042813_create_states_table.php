@@ -17,7 +17,8 @@ class CreateStatesTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('state');
-            
+            $table->char('color',10);
+
             $table->timestamps();
         });
     }

@@ -1,10 +1,8 @@
 <?php
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class CategoriesTableSeeder extends Seeder
+class ItemsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,21 +11,31 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->insert([
+        DB::table('items')->insert([
             [
                 'id' => 1,
-                'category' => 'Neumatica',
+                'item' => 'Seed1',
                 'description' => 'seed1'
             ],
             [
                 'id' => 2,
-                'category' => 'Electronica',
+                'item' => 'seed2',
                 'description' => 'seed2'
             ],
             [
                 'id' => 3,
-                'category' => 'hidraulica',
+                'item' => 'seed3',
                 'description' => 'seed3'
+            ],
+            [
+                'id' => 4,
+                'item' => 'seed4',
+                'description' => 'seed4'
+            ],
+            [
+                'id' => 5,
+                'item' => 'seed5',
+                'description' => 'seed5'
             ]
         ]);
     }

@@ -10,35 +10,17 @@ use Carbon\Carbon;
 
 class CategoryItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    //retorna todos los items de una categoria
+    public function index(Request $request)
     {
-        
+        $items = Category::find($request->id)->items;
+        return $items;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //relaciona los items con distintas categorias, funciona como update
     public function store(Request $request)
     {
-      
+
         if(Item::find($request->id)->categories == '[]')
         {
             $parents = Category::find($request->categories);
@@ -63,90 +45,22 @@ class CategoryItemController extends Controller
         return Item::find($request->id)->categories;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //retorna todos los items de una categoria
     public function show($id)
     {
-        return Item::find($id)->categories;
+        $categories = Item::find($id)->categories;
+        return $categories;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    //elimina relaciones entre items y categorias
+    public function destroy($id,Request $request)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $categories=Category::find(collect($request->categories));
+        $string ='';
+        foreach($categories as $category){
+            $string = $string.$category->category.', ';
+        }
+        Item::find($id)->categories()->detach($request->categories);
+        return 'Se eliminaron las categorias: '.substr($string,0,-2).'.';//el substr elimina el ultimo espacio y la ultima coma del arreglo
     }
 }
-
-/*    //Delete relations
-    public function deleteCategory($id,$category)
-    {
-        Item::find($id)->categories()->detach($category);
-        return redirect('/items/'.$id.'/edit');
-    }
-    //add categories
-    public function addCategory($id)
-    {
-        $item=Item::findOrFail($id);
-        return view('item.addCategories',[
-            'item'=>$item,
-            'categories'=>Category::all()
-            ]);
-    }
-    //confirmacion de actualizacion de categorias
-    public function addCategoryConfirm(Request $request){
-        
-        if(Item::find($request->id)->categories == '[]')
-        {
-            $parents = Category::find($request->categories);
-            Item::find($request->id)->categories()->attach($parents);
-        }
-        else
-        {
-            $categories=Item::find($request->id)->categories;
-            foreach($request->categories as $request->category){
-                $flag=1;
-                foreach($categories as $category){
-                    if($category->id == $request->category){
-                        $flag=0;
-                    }
-                }
-                if($flag==1)
-                {
-                    Item::find($request->id)->categories()->attach($request->category);
-                }
-            }
-        }
-        return redirect('/items/'.$request->id.'/edit');
-    }*/
