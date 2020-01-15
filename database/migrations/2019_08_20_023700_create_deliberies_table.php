@@ -16,17 +16,14 @@ class CreateDeliberiesTable extends Migration
         Schema::create('deliberies', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->unsignedBigInteger('serial_id');
-            $table->foreign('serial_id')->references('id')->on('serials');
+            $table->string('serials');
+            $table->string('observations');
 
             $table->unsignedBigInteger('reservation_id');
             $table->foreign('reservation_id')->references('id')->on('reservations');
-        
-            $table->unsignedBigInteger('report_id');
-            $table->foreign('report_id')->references('id')->on('reports');
             
-            $table->unsignedBigInteger('delibery_state_id');
-            $table->foreign('delibery_state_id')->references('id')->on('delibery_states');
+            $table->unsignedBigInteger('dstate_id');
+            $table->foreign('dstate_id')->references('id')->on('dstates');
             
             $table->timestamps();
         });

@@ -26,16 +26,6 @@ class ItemsTableSeeder extends Seeder
                 'id' => 3,
                 'item' => 'seed3',
                 'description' => 'seed3'
-            ],
-            [
-                'id' => 4,
-                'item' => 'seed4',
-                'description' => 'seed4'
-            ],
-            [
-                'id' => 5,
-                'item' => 'seed5',
-                'description' => 'seed5'
             ]
         ]);
     }

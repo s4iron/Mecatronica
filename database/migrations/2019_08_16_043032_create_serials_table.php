@@ -16,9 +16,9 @@ class CreateSerialsTable extends Migration
         Schema::create('serials', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('item');
-            $table->unsignedInteger('serial');
-            $table->string('observations');
+            $table->string('model');
+            $table->string('serial')->unique();
+            $table->string('observations')->nullable($value = true);
             
             $table->unsignedBigInteger('item_id');
             $table->foreign('item_id')->references('id')->on('items');

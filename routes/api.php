@@ -24,3 +24,8 @@ Route::resource('/items','ItemController');
 Route::resource('/category_item','CategoryItemController');
 
 Route::resource('/states','StateController');
+
+Route::resource('/serials','SerialController');
+
+Route::resource('/dstates','DstateController');
+

@@ -10,4 +10,8 @@ class Item extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+    public function serials()
+    {
+        return $this->hasMany(Serial::class);
+    }
 }
