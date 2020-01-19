@@ -24,8 +24,8 @@ class CreateReservationsTable extends Migration
             $table->unsignedBigInteger('hour_id');
             $table->foreign('hour_id')->references('id')->on('hours');
             
-            $table->unsignedBigInteger('reserve_state_id');
-            $table->foreign('reserve_state_id')->references('id')->on('reserve_states');
+            $table->unsignedBigInteger('rstate_id');
+            $table->foreign('rstate_id')->references('id')->on('rstates');
 
             $table->timestamps();
         });

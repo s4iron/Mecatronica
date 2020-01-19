@@ -16,7 +16,7 @@ class CreateDstates extends Migration
         Schema::create('dstates', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('delibery_state');
+            $table->string('delibery_state')->unique();
 
             $table->timestamps();
         });

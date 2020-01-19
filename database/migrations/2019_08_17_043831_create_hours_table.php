@@ -18,11 +18,7 @@ class CreateHoursTable extends Migration
             
             $table->time('hour_start');
             $table->unsignedTinyInteger('duration');
-            
-            
-            $table->unsignedBigInteger('limit_time')->default(1);
-            $table->foreign('limit_time')->references('id')->on('limits');
-        
+                    
             $table->timestamps();
         });
     }

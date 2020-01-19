@@ -16,7 +16,9 @@ class DatabaseSeeder extends Seeder
                  CategoriesTableSeeder::class,
                  ItemsTableSeeder::class,
                  StateTableSeeder::class,
-                 SerialTableSeeder::class
+                 SerialTableSeeder::class,
+                 DstateTableSeeder::class,
+                 RstateTableSeeder::class
              ]
          );
     }

@@ -7,11 +7,6 @@ use App\Dstate;
 
 class DstateController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return Dstate::all();
@@ -30,24 +25,12 @@ class DstateController extends Controller
         return $dstate;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $dstate=Dstate::findOrFail($id);
         return ($dstate);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $dstate = Dstate::findOrFail($id);

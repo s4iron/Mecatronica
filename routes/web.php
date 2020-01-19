@@ -14,5 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/404', 'NotFoundController@notfound')->name("errors.404");
 

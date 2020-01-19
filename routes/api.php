@@ -17,15 +17,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//equipos
 Route::resource('/categories','CategoryController');
-
 Route::resource('/items','ItemController');
-
-Route::resource('/category_item','CategoryItemController');
-
-Route::resource('/states','StateController');
-
 Route::resource('/serials','SerialController');
 
-Route::resource('/dstates','DstateController');
+//stados
+Route::resource('/states','StateController');//estado de equipos
+Route::resource('/dstates','DstateController');//estado entrega de quipos
+Route::resource('/rstates','RstateController');//estado de la reserva
+
+//relacionales
+Route::resource('/category_item','CategoryItemController');
+
+//reservas
+Route::resource('/tags','TagController');
+Route::resource('/hours','HourController');
+
 

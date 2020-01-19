@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReserveStates extends Migration
+class CreateRstates extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateReserveStates extends Migration
      */
     public function up()
     {
-        Schema::create('reserve_states', function (Blueprint $table) {
+        Schema::create('rstates', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('reserve_state');
+            $table->string('reserve_state')->unique();
 
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class CreateReserveStates extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reserve_states');
+        Schema::dropIfExists('rstates');
     }
 }
